@@ -1,0 +1,50 @@
+<ion-content class="bg">
+  <ion-list lines="none">
+    <ion-item>
+      <ion-avatar class="profile-image">
+        <img src="https://griffonagedotcom.files.wordpress.com/2016/07/profile-modern-2e.jpg">
+      </ion-avatar>
+      <ion-label>
+        <h2 bold>&nbsp; Jonas</h2>
+        <!-- <p>Description or status</p> -->
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list lines="none" class="app-list" mode="md">
+    <ion-item expand="full" routerLink="/conta" routerDirection="forward">
+      <ion-icon slot="start" color="primary" name="key"></ion-icon>
+      <ion-label>
+        <h2>Minha conta</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item routerLink="/historico">
+      <ion-icon slot="start" color="primary" name="notifications"></ion-icon>
+      <ion-label>
+        <h2>Histórico</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item  routerLink="/ajuda">
+      <ion-icon slot="start" color="primary" name="help"></ion-icon>
+      <ion-label>
+        <h2>Ajuda</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item  routerLink="/sobre">
+      <ion-icon slot="start" color="primary" name="md-information-circle"></ion-icon>
+      <ion-label>
+        <h2>Sobre nós</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item  routerLink="/login">
+      <ion-icon slot="start" color="primary" name="md-exit"></ion-icon>
+      <ion-label>
+        <h2>Sair</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
