@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'visualizar-agenda', loadChildren: './pages/visualizar-agenda/visualizar-agenda.module#VisualizarAgendaPageModule' },
   { path: 'enviar-publicacao', loadChildren: './pages/enviar-publicacao/enviar-publicacao.module#EnviarPublicacaoPageModule' },
   { path: 'ajuda', loadChildren: './pages/ajuda/ajuda.module#AjudaPageModule' },
-  { path: 'sobre-nos', loadChildren: './pages/sobre-nos/sobre-nos.module#SobreNosPageModule' },
+  { path: 'sobre', loadChildren: './pages/sobre-nos/sobre-nos.module#SobreNosPageModule' },
   { path: 'historico-agenda', loadChildren: './pages/historico-agenda/historico-agenda.module#HistoricoAgendaPageModule' },
   { path: 'conta', loadChildren: './pages/conta/conta.module#ContaPageModule' }
 ];

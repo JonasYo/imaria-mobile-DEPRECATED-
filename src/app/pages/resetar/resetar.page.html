@@ -1,9 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>resetar</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content class="bg">
+  <div class="mgt-55">
+    <div>
+      <h2 text-center class="text-title">
+        Alterar Senha
+      </h2>
+    </div>
+    <div class="login-form">
+      <form>
+        <ion-grid>
+          <ion-row color="primary" justify-content-center>
+            <ion-col align-self-center>
+              <div>
+                <ion-item>
+                  <ion-label class="fs-15 mgb-10" position="floating">Email</ion-label>
+                  <ion-input name="email" type="email" required>
+                    <ion-icon name="md-person" class="pdr-5" item-right></ion-icon>
+                  </ion-input>
+                </ion-item>
+              </div>
+              <div padding>
+                <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17" size="medium" shape="round"
+                  type="submit" expand="block">Avançar</ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </div>
+  </div>
 </ion-content>

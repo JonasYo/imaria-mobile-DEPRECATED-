@@ -1,9 +1,57 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>cadastro</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="bg">
+  <div class="mgt-55">
+    <div>
+      <h2 text-center class="text-title">
+        Cadastrar-se
+      </h2>
+    </div>
+    <div class="login-form">
+      <form>
+        <ion-grid>
+          <ion-row color="primary" justify-content-center>
+            <ion-col align-self-center>
+              <div>
+                <ion-item>
+                  <ion-label class="fs-15 mgb-10" position="floating">Nome Completo</ion-label>
+                  <ion-input name="email" type="email" required>
+                    <ion-icon name="md-person" class="pdr-5" item-right></ion-icon>
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label class="fs-15 mgb-10" position="floating">Telefone</ion-label>
+                  <ion-input name="email" type="text" required>
+                    <ion-icon name="md-phone-portrait" class="pdr-5" item-right></ion-icon>
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label class="fs-15 mgb-10" position="floating">Email</ion-label>
+                  <ion-input name="email" type="email" required>
+                    <ion-icon name="md-at" class="pdr-5" item-right></ion-icon>
+                  </ion-input>
+                </ion-item>
+                <ion-item class="mgt-5">
+                  <ion-label class="fs-15 mgb-10" position="floating">Senha</ion-label>
+                  <ion-input name="password" type="password" required>
+                    <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
+                  </ion-input>
+                </ion-item>
+              </div>
+              <div padding>
+                <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17" size="medium" shape="round"
+                  type="submit" expand="block">Cadastrar</ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
 
-<ion-content>
-
+      <div>
+        <div class="mgt-55">
+          <ion-text routerLink="/login" routerDirection="forward" text-bold text-center>
+            <p>ENTRAR</p>
+          </ion-text>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

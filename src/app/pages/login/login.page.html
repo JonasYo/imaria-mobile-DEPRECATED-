@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="bg">
   <div class="mgt-55">
     <div>
       <h2 text-center class="text-title">
@@ -26,7 +26,7 @@
                 </ion-item>
               </div>
               <div>
-                <ion-text text-right>
+                <ion-text routerLink="/resetar" routerDirection="forward" text-right>
                   <p>Esqueceu a senha?</p>
                 </ion-text>
               </div>
@@ -42,7 +42,7 @@
       <div>
         <div>
           <ion-text text-center>
-            <p>Ou inscreva-se usando</p>
+            <p>Entrar com</p>
           </ion-text>
           <ion-grid>
             <ion-row>
@@ -64,9 +64,9 @@
 
         <div class="mgt-25">
           <ion-text text-center>
-            <p>Ou inscreva-se usando</p>
+            <p>Ou inscreva-se</p>
           </ion-text>
-          <ion-text text-bold text-center>
+          <ion-text routerLink="/cadastro" routerDirection="forward" text-bold text-center>
             <p>INSCREVA-SE</p>
           </ion-text>
         </div>
