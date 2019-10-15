@@ -1,10 +1,11 @@
 :root {
-    /** rose **/
+  /** rose **/
   --ion-color-rose: #fe8083;
   --ion-color-rose-tint: #ffe7e7;
 
   /** primary **/
-  --ion-color-primary: linear-gradient(to right, #fe8083, #3F5EFB);;
+  // --ion-color-primary: linear-gradient(to right, #fe8083, #3f5efb);
+  --ion-color-primary: #fe8083;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffe7e7;
   --ion-color-primary-contrast-rgb: 255, 255, 255;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-opcoes',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['opcoes.page.scss']
 })
 export class OpcoesPage {
+  selectedTab = 'conta';
 
-  constructor() {}
+  imgLogo = '../../../assets/icon/imaria-logo.png';
+  roseGoldBackground = '../../../assets/images/rose-gold.jpg';
+
+  constructor(public nav: NavController) { }
+
+  redirecionarPage() {
+    // this.nav.push('')
+  }
 
 }

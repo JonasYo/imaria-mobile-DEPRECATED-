@@ -38,12 +38,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'agendar',
+        path: 'servicos',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/agendar/agendar.module').then(m => m.AgendarPageModule)
+              import('../pages/servicos/servicos.module').then(m => m.ServicosPageModule)
           }
         ]
       },
@@ -64,16 +64,6 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../pages/opcoes/opcoes.module').then(m => m.OpcoesPageModule)
-          }
-        ]
-      },
-      {
-        path: 'visualizar/agenda',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../pages/visualizar-agenda/visualizar-agenda.module').then(m => m.VisualizarAgendaPageModule)
           }
         ]
       },
@@ -107,12 +97,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'historico',
+        path: 'agenda',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/historico-agenda/historico-agenda.module').then(m => m.HistoricoAgendaPageModule)
+              import('../pages/agenda/agenda.module').then(m => m.AgendaPageModule)
           }
         ]
       },
@@ -125,17 +115,12 @@ const routes: Routes = [
               import('../pages/conta/conta.module').then(m => m.ContaPageModule)
           }
         ]
-      },
-      {
-        path: '',
-        redirectTo: '/tabs/agendar',
-        pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/agendar',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sobre-nos.page.scss'],
 })
 export class SobreNosPage implements OnInit {
-  private imgLogo = '../../../assets/images/imaria-logo.png';
+  imgLogo = '../../../assets/images/imaria-logo.png';
 
   constructor() { }
 

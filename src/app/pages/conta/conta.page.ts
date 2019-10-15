@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./conta.page.scss'],
 })
 export class ContaPage implements OnInit {
-  private roseGoldBackground = '../../../assets/images/rose-gold.jpg';
+  roseGoldBackground = '../../../assets/images/rose-gold.jpg';
 
   selectedTab = 'alterarDados';
 

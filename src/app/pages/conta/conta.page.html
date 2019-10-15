@@ -1,7 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>
+      Minha Conta
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="bg">
   <div class="padrao-width">
     <div class="ani-bottom-to-top card-img-bg ">
-      <ion-card class="bdra-5 dark efeito" (click)="alterarDados('alterarDadosPessoais')">
+      <ion-card class="bdra-5 dark efeito">
         <ion-img class="icon-social-media" [src]="roseGoldBackground"></ion-img>
         <div class="card-title mgt--15">
           Jonas
@@ -47,8 +58,7 @@
                   </ion-item>
                 </div>
                 <div padding>
-                  <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17" size="medium" shape="round"
-                    type="submit" expand="block">Atualizar</ion-button>
+                  <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17"  type="submit" expand="block" fill="outline">Atualizar</ion-button>
                 </div>
               </ion-col>
             </ion-row>
@@ -81,8 +91,7 @@
                   </ion-item>
                 </div>
                 <div padding>
-                  <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17" size="medium" shape="round"
-                    type="submit" expand="block">Atualizar</ion-button>
+                  <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17"  type="submit" expand="block" fill="outline">Atualizar</ion-button>
                 </div>
               </ion-col>
             </ion-row>

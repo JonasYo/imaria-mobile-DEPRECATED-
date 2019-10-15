@@ -1,1 +1,23 @@
+ion-icon {
+  &[class*="custom-"] {
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width: 1em;
+    height: 1em;
+  }
+}
 
+.tabs ion-tab-bar {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  border-radius: 5%;
+  border-top-left-radius: 5px;
+}
+
+.tabs ion-tab-button {
+  background: #fe8083;
+  color: white;
+}

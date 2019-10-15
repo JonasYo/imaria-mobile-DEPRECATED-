@@ -1,5 +1,6 @@
 .bg {
-  --background: rgba(var(--ion-color-primary-rgb), 0.05);
+  --background: #f4f4f4;
+  --ion-background-color: #f4f4f4;
 }
 
 .header-md::after,
@@ -11,50 +12,24 @@
   align-items: center;
 }
 
-.app-list {
-  margin-top: 7px !important;
-  padding: 5px;
-  background: none;
-  .item {
-    border-radius: 10px;
-    padding-top: 4px !important;
-    padding-bottom: 4px !important;
-    margin-bottom: 5px;
-    ion-avatar {
-      height: 60px;
-      width: 60px;
-    }
-    p[item-end] {
-      text-align: right;
-      color: #cfcfcf;
-    }
-  }
-}
-
 .login-form {
   width: 85%;
   padding-top: 30px;
   margin: auto;
 }
 
-.profile-image {
-  width: 70px !important;
-  height: 70px !important;
-}
-
-
-.text-primary {
-  color: var(--ion-color-primary) !important;
-}
-.text-secondary {
-  color: var(--ion-color-secondary) !important;
-}
-.text-danger {
-  color: var(--ion-color-danger) !important;
-}
-.text-muted {
-  color: #999;
-}
+// .text-primary {
+//   color: var(--ion-color-primary) !important;
+// }
+// .text-secondary {
+//   color: var(--ion-color-secondary) !important;
+// }
+// .text-danger {
+//   color: var(--ion-color-danger) !important;
+// }
+// .text-muted {
+//   color: #999;
+// }
 
 .mgt-1 {
   margin-top: 1px !important;
@@ -240,7 +215,6 @@
 .pdb-5 {
   padding-bottom: 5px !important;
 }
-
 
 .pdl-1 {
   padding-left: 1px !important;

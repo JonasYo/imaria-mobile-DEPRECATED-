@@ -1,0 +1,54 @@
+<!-- <ion-header>
+    <ion-toolbar>
+        <ion-title text-center>
+            Minha agenda
+        </ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="bg">
+    <div>
+        <h4 text-center>Mais agendados</h4>
+        <ion-slides [options]="sliderConfig">
+            <ion-slide *ngFor="let servico of servicos">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title class="fs-17">
+                            {{ servico.nome }} - R${{ servico.preco }}
+                        </ion-card-title>
+                        <ion-card-content>
+                            <!-- <img src="https://via.placeholder.com/300x300"> -->
+                            <img src="https://sempresobrancelhas.com/wp-content/uploads/2019/04/images-10-300x300.jpeg">
+                            <ion-button (click)="agendarHorario()" expand="block" fill="outline">Agendar</ion-button>
+                        </ion-card-content>
+                    </ion-card-header>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </div>
+
+    <div cards>
+        <h4 text-center>Top agendados da semana</h4>
+        <div class="grid-full">
+            <ion-row>
+                <ion-col *ngFor="let servico of servicos">
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title class="fs-17">
+                                {{ servico.nome }} - ${{ servico.preco }}
+                            </ion-card-title>
+                            <ion-card-content>
+                                <img
+                                    src="https://sempresobrancelhas.com/wp-content/uploads/2019/04/images-10-300x300.jpeg">
+                                <ion-button expand="block" fill="outline">Agendar</ion-button>
+                            </ion-card-content>
+                        </ion-card-header>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+</ion-content>

@@ -1,43 +1,145 @@
 <ion-content class="bg">
-  <ion-list lines="none">
-    <ion-item routerLink="/conta" routerDirection="forward">
-      <ion-avatar class="profile-image">
-        <img src="https://griffonagedotcom.files.wordpress.com/2016/07/profile-modern-2e.jpg">
-      </ion-avatar>
-      <ion-label>
-        <h2 bold>&nbsp; Jonas</h2>
-        <p bold class="pdl-10">Minha conta</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <div text-center class="pink" lines="none">
+    <img class="profile-image" src="https://griffonagedotcom.files.wordpress.com/2016/07/profile-modern-2e.jpg">
+    <p class="fs-22 fw-600">&nbsp; Jonas Siqueira Marcelino</p>
+  </div>
 
-  <ion-list lines="none" class="app-list" mode="md">
-    <ion-item routerLink="/historico-agenda">
-      <ion-icon slot="start" color="primary" name="notifications"></ion-icon>
-      <ion-label>
-        <h2>Histórico</h2>
-      </ion-label>
-    </ion-item>
+  <div text-center>
+    <ion-button routerLink="/login" routerDirection="forward" size="small" class="fs-17" type="submit" fill="outline">
+      <i>Deslogar</i></ion-button>
+  </div>
 
-    <ion-item routerLink="/ajuda">
-      <ion-icon slot="start" color="primary" name="help"></ion-icon>
-      <ion-label>
-        <h2>Ajuda</h2>
-      </ion-label>
-    </ion-item>
+  <div>
+    <ion-segment class="pdl-35 pdr-35" mode="ios" type="ios" [(ngModel)]="selectedTab">
+      <ion-segment-button mode="ios" type="ios" value="alterarDados">
+        Conta
+      </ion-segment-button>
+      <ion-segment-button mode="ios" type="ios" value="alterarSenha">
+        Sobre nós
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-    <ion-item routerLink="/sobre">
-      <ion-icon slot="start" color="primary" name="md-information-circle"></ion-icon>
-      <ion-label>
-        <h2>Sobre nós</h2>
-      </ion-label>
-    </ion-item>
+  <div [hidden]="selectedTab == conta">
+    <div class="padrao-width">
+      <div class="ani-bottom-to-top card-img-bg ">
+        <ion-card class="bdra-5 dark efeito">
+          <ion-img class="icon-social-media" [src]="roseGoldBackground"></ion-img>
+          <div class="card-title mgt--15">
+            Jonas
+          </div>
+          <div class="card-subtitle mgt-5">
+            desde 27/09/1997
+            <br>
+            <!-- <hr /> -->
+            Email: asd
+          </div>
+        </ion-card>
 
-    <ion-item routerLink="/login">
-      <ion-icon slot="start" color="primary" name="md-exit"></ion-icon>
-      <ion-label>
-        <h2>Sair</h2>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+        <!-- <ion-segment class="pdl-35 pdr-35" mode="ios" type="ios" [(ngModel)]="selectedTab">
+          <ion-segment-button mode="ios" type="ios" value="alterarDados">
+            Alterar dados
+          </ion-segment-button>
+          <ion-segment-button mode="ios" type="ios" value="alterarSenha">
+            Alterar senha
+          </ion-segment-button>
+        </ion-segment> -->
+
+        <div *ngIf="selectedTab == 'alterarDados'">
+          <form>
+            <ion-grid>
+              <ion-row color="primary" justify-content-center>
+                <ion-col align-self-center>
+                  <div>
+                    <ion-item>
+                      <ion-label class="fs-15 mgb-10" position="floating">Nome Completo</ion-label>
+                      <ion-input name="email" type="email" required>
+                        <ion-icon name="md-person" class="pdr-5" item-right></ion-icon>
+                      </ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label class="fs-15 mgb-10" position="floating">Data de nascimento</ion-label>
+                      <ion-input name="email" type="text" required>
+                        <ion-icon name="calendar" class="pdr-5" item-right></ion-icon>
+                      </ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label class="fs-15 mgb-10" position="floating">Telefone</ion-label>
+                      <ion-input name="email" type="text" required>
+                        <ion-icon name="md-phone-portrait" class="pdr-5" item-right></ion-icon>
+                      </ion-input>
+                    </ion-item>
+                  </div>
+                  <div padding>
+                    <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17" type="submit" expand="block"
+                      fill="outline">Atualizar</ion-button>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+        </div>
+        
+        <div *ngIf="selectedTab == 'alterarSenha'">
+          <form>
+            <ion-grid>
+              <ion-row color="primary" justify-content-center>
+                <ion-col align-self-center>
+                  <div>
+                    <ion-item class="mgt-5">
+                      <ion-label class="fs-15 mgb-10" position="floating">Senha atual</ion-label>
+                      <ion-input name="password" type="password" required>
+                        <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
+                      </ion-input>
+                    </ion-item>
+                    <ion-item class="mgt-5">
+                      <ion-label class="fs-15 mgb-10" position="floating">Nova senha</ion-label>
+                      <ion-input name="password" type="password" required>
+                        <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
+                      </ion-input>
+                    </ion-item>
+                    <ion-item class="mgt-5">
+                      <ion-label class="fs-15 mgb-10" position="floating">Confirma nova senha</ion-label>
+                      <ion-input name="password" type="password" required>
+                        <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
+                      </ion-input>
+                    </ion-item>
+                  </div>
+                  <div padding>
+                    <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17" type="submit" expand="block"
+                      fill="outline">Atualizar</ion-button>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div [hidden]="selectedTab == sobre">
+    <div>
+      <ion-row class="mgt-30">
+        <ion-img text-center [src]="imgLogo"></ion-img>
+      </ion-row>
+    </div>
+    <div class="mgt-40">
+      <p text-center>
+        Somos asdasdasdghasdgasdasdasd,<br> dasdasdasdasdasdasd<br> e asdasdasdasdasdasdasd
+      </p>
+    </div>
+    <div class="mgt-30">
+      <p text-center>
+        Copyright 2019<br><br>
+        Versão 1.0.0
+      </p>
+    </div>
+
+    <ion-footer class="bg" no-border transparent translucent>
+      <p text-center class="fs-15">Política de privacidade</p>
+    </ion-footer>
+  </div>
+
 </ion-content>

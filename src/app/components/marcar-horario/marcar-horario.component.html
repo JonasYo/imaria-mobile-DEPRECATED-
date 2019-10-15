@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="closeModal()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title text-center>
+      Marcar horario
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+  <h4 text-center>Escolha o seu horário</h4>
+  <div class="scrolling-wrapper">
+    <div *ngFor="let servico of servicos; let i = index;trackBy: tracked;" class="card">
+      <ion-card>
+        <ion-card-header [ngClass]="{'changeColor': servico.active}" (click)="changeColor(i)">
+          <ion-card-title text-center class="fs-17">
+            {{ servico.diaDaSemana }} <br>
+            {{ servico.data }}
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </div>
+
+  <div padding>
+    <h6 text-left>Manhã</h6>
+    <div>
+      <p>Não há horários disponíveis nesse período.</p>
+    </div>
+  </div>
+
+  <div padding>
+    <h6 text-left>Tarde</h6>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button expand="block" fill="outline">15:00</ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button expand="block" fill="outline">15:30</ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button expand="block" fill="outline">16:00</ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button expand="block" fill="outline">16:30</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div padding>
+    <h6 text-left>Noite</h6>
+    <p>Não há horários disponíveis nesse período.</p>
+  </div>
+
+</ion-content>
