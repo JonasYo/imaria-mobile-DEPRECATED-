@@ -14,12 +14,12 @@
 <ion-content class="bg">
   <h4 text-center>Escolha o seu horário</h4>
   <div class="scrolling-wrapper">
-    <div *ngFor="let servico of servicos; let i = index;trackBy: tracked;" class="card">
+    <div *ngFor="let data of datas; let i = index;trackBy: tracked;" class="card">
       <ion-card>
-        <ion-card-header [ngClass]="{'changeColor': servico.active}" (click)="changeColor(i)">
+        <ion-card-header [ngClass]="{'changeColor': data.active}" (click)="changeColor(i)">
           <ion-card-title text-center class="fs-17">
-            {{ servico.diaDaSemana }} <br>
-            {{ servico.data }}
+            {{ data.diaDaSemana }} <br>
+            {{ data.data}}
           </ion-card-title>
         </ion-card-header>
       </ion-card>
@@ -27,6 +27,17 @@
   </div>
 
   <div padding>
+    <h6 text-center>Horário disponiveis</h6>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let horario of horariosDisponiveis" size="3">
+          <ion-button (click)="agendarHorario(horario)" expand="block" fill="outline">{{horario.hour}}</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- <div padding>
     <h6 text-left>Manhã</h6>
     <div>
       <p>Não há horários disponíveis nesse período.</p>
@@ -37,17 +48,8 @@
     <h6 text-left>Tarde</h6>
     <ion-grid>
       <ion-row>
-        <ion-col size="4">
-          <ion-button expand="block" fill="outline">15:00</ion-button>
-        </ion-col>
-        <ion-col size="4">
-          <ion-button expand="block" fill="outline">15:30</ion-button>
-        </ion-col>
-        <ion-col size="4">
-          <ion-button expand="block" fill="outline">16:00</ion-button>
-        </ion-col>
-        <ion-col size="4">
-          <ion-button expand="block" fill="outline">16:30</ion-button>
+        <ion-col *ngFor="let horario of horariosDisponiveis" size="3">
+          <ion-button expand="block" fill="outline">{{horario.hour}}</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -56,6 +58,6 @@
   <div padding>
     <h6 text-left>Noite</h6>
     <p>Não há horários disponíveis nesse período.</p>
-  </div>
+  </div> -->
 
 </ion-content>

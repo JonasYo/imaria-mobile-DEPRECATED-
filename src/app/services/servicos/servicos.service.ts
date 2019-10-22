@@ -3,7 +3,6 @@ import { environment as ENV } from '../../../environments/environment';
 
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,14 @@ export class ServicosService {
   constructor(public http: HttpClient) { }
 
   listarServicos(): Observable<any> {
-    return this.http.get(this.urlIMariaAuth + '/services');
+    return this.http.get(`${this.urlIMariaAuth}/services`);
+  }
+
+  listaHorariosDisponiveis(date, serviceId): Observable<any> {
+    return this.http.get(`${this.urlIMariaAuth}/services/${date}/schedule/${serviceId}`);
+  }
+
+  agendarHorario(userId, dto): Observable<any> {
+    return this.http.post(`${this.urlIMariaAuth}/services/${userId}/schedule`, dto);
   }
 }

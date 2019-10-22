@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccessService } from '../../services/access/access.service';
-import { NavController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast/toast.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
 
   usuario: any = {};
 
-  constructor(private accessServ: AccessService, private toastServ: ToastService, private router: Router) { }
+  constructor(private accessServ: AccessService, private toastServ: ToastService, private router: Router, private storage: Storage) { }
 
   ngOnInit() {
   }
@@ -27,6 +27,8 @@ export class LoginPage implements OnInit {
     try {
       const res = await this.accessServ.loginUsuario(this.usuario).toPromise();
       if (res) {
+        await this.storage.set('token', res.token);
+        await this.storage.set('user', res.user);
         this.router.navigateByUrl('tabs/servicos');
       }
     } catch (error) {
