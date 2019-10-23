@@ -1,32 +1,8 @@
 .profile-image {
   width: 120px !important;
   height: 120px !important;
-  border-radius: 20%;
+  border-radius: 60%;
   align-items: center;
-}
-
-.app-list {
-  margin-top: 7px !important;
-  padding: 5px;
-  background: none;
-  .item {
-    border-radius: 10px;
-    padding-top: 4px !important;
-    padding-bottom: 4px !important;
-    margin-bottom: 5px;
-    ion-avatar {
-      height: 60px;
-      width: 60px;
-    }
-    p[item-end] {
-      text-align: right;
-      color: #cfcfcf;
-    }
-  }
-}
-
-.efeito img {
-  opacity: 0.4;
 }
 
 .card-img-bg {
@@ -51,31 +27,4 @@
     text-shadow: 0 0 0.2em #000, 0 0 0.2em #000;
     color: #fff;
   }
-}
-
-.card-img-bg-more {
-  position: relative;
-
-  ion-card-header {
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .wrapper {
-    z-index: 1;
-    position: absolute;
-    display: flex;
-    align-items: flex-end;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-}
-
-.bg-style {
-  background: #1d87f3;
 }

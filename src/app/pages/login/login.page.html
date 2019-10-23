@@ -1,75 +1,76 @@
 <ion-content class="bg">
-  <div class="mgt-25">
+  <div class="mgt-50">
     <div>
       <h2 text-center class="text-title">
         Entrar
       </h2>
     </div>
 
-    <div class="login-form">
+    <div class="form pdt-20">
       <form (submit)="loginUsuario()">
-        <ion-grid>
-          <ion-row color="primary" justify-content-center>
-            <ion-col align-self-center>
-              <div>
-                <ion-item>
-                  <ion-label class="fs-15 mgb-10" position="floating">Usuario</ion-label>
-                  <ion-input name="email" [(ngModel)]="usuario.email" type="email" required>
-                    <ion-icon name="md-person" class="pdr-5" item-right></ion-icon>
-                  </ion-input>
-                </ion-item>
-                <ion-item class="mgt-5">
-                  <ion-label class="fs-15 mgb-10" position="floating">Senha</ion-label>
-                  <ion-input name="password" [(ngModel)]="usuario.password" type="password" required>
-                    <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
-                  </ion-input>
-                </ion-item>
-              </div>
-              <div>
-                <ion-text routerLink="/resetar" text-right>
-                  <p>Esqueceu a senha?</p>
-                </ion-text>
-              </div>
-              <div>
-                <ion-button class="fs-17" type="submit" expand="block" fill="outline"> Entrar</ion-button>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <div align-self-center justify-content-center>
+          <ion-item>
+            <ion-label class="fs-15 mgb-10" position="floating">Email</ion-label>
+            <ion-input name="email" [(ngModel)]="usuario.email" type="email" required>
+              <ion-icon name="md-at" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-item class="mgt-5">
+            <ion-label class="fs-15 mgb-10" position="floating">Senha</ion-label>
+            <ion-input name="password" [(ngModel)]="usuario.password" type="password" required>
+              <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+        </div>
+        <div>
+          <ion-text routerLink="/resetar" text-right>
+            <p>Esqueceu a senha?</p>
+          </ion-text>
+        </div>
+        <div [hidden]="!btnLogin">
+          <ion-button class="fs-17" type="submit" expand="block" fill="outline">
+            Entrar
+          </ion-button>
+        </div>
+        <div class="spinner" [hidden]="btnLogin">
+          <ion-spinner text-center color="primary" name="crescent"></ion-spinner>
+        </div>
       </form>
 
-      <div>
+      <div class="pdt-40">
         <div>
           <ion-text text-center>
-            <p>Entrar com</p>
+            <p>Ou entrar com</p>
           </ion-text>
           <ion-grid>
             <ion-row>
-              <ion-col>
+              <ion-col (click)="loginWithFacebook()">
                 <ion-img class="icon-social-media" [src]="facebookIcon"></ion-img>
               </ion-col>
-              <ion-col>
+              <ion-col (click)="loginWithIntagram()">
                 <ion-img class="icon-social-media" height="10%" [src]="instagramIcon"></ion-img>
               </ion-col>
-              <ion-col>
+              <ion-col (click)="loginWithGoogle()">
                 <ion-img class="icon-social-media" [src]="googleIcon"></ion-img>
               </ion-col>
-              <ion-col>
+              <ion-col (click)="loginWithTwitter()">
                 <ion-img class="icon-social-media" [src]="twitterIcon"></ion-img>
               </ion-col>
             </ion-row>
           </ion-grid>
         </div>
-
-        <div class="mgt-25">
-          <ion-text text-center>
-            <p>Ou inscreva-se</p>
-          </ion-text>
-          <ion-text routerLink="/cadastro" routerDirection="forward" text-bold text-center>
-            <p>INSCREVA-SE</p>
-          </ion-text>
-        </div>
       </div>
     </div>
   </div>
 </ion-content>
+
+<ion-footer class="bg">
+  <ion-toolbar transparent>
+    <ion-text text-center>
+      <p>Ou</p>
+    </ion-text>
+    <ion-text routerLink="/cadastro" routerDirection="forward" text-bold text-center>
+      <p>INSCREVA-SE</p>
+    </ion-text>
+  </ion-toolbar>
+</ion-footer>

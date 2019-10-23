@@ -16,3 +16,8 @@ ion-scroll[scrollX] {
 .icon-social-media {
   height: 70%;
 }
+
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}

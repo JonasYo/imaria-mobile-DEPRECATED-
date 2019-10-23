@@ -12,9 +12,17 @@
 </ion-header>
 
 <ion-content class="bg">
-  <h4 text-center>Escolha o seu horário</h4>
+  <div class="pdl-25">
+    <p class="fs-17">
+      <b>Serviço:</b> <br>
+      {{servicoEscolhido.name}}</p>
+    <p class="fs-17">
+      <b>Preço:</b> <br>
+      R$ {{servicoEscolhido.price}}</p>
+  </div>
+  <h5 text-center><b>Escolha o seu horário</b></h5>
   <div class="scrolling-wrapper">
-    <div *ngFor="let data of datas; let i = index;trackBy: tracked;" class="card">
+    <div *ngFor="let data of datasDisponiveis; let i = index;trackBy: tracked;" class="card">
       <ion-card>
         <ion-card-header [ngClass]="{'changeColor': data.active}" (click)="changeColor(i)">
           <ion-card-title text-center class="fs-17">
@@ -27,14 +35,20 @@
   </div>
 
   <div padding>
-    <h6 text-center>Horário disponiveis</h6>
-    <ion-grid>
+    <ion-grid *ngIf="horariosDisponiveis.length > 0">
+      <h5 text-center><b>Horário disponiveis</b></h5>
       <ion-row>
         <ion-col *ngFor="let horario of horariosDisponiveis" size="3">
-          <ion-button (click)="agendarHorario(horario)" expand="block" fill="outline">{{horario.hour}}</ion-button>
+          <ion-button (click)="confirmarAgendamento(horario)" expand="block" fill="outline">{{horario.hour}}
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
+    <div *ngIf="horariosDisponiveis.length == 0">
+      <ion-img style="height: 100px;" [src]="notHave"></ion-img>
+      <h5 text-center><b>Não há horário disponiveis</b></h5>
+      <h5 text-center><b>para a data escolhida</b></h5>
+    </div>
   </div>
 
   <!-- <div padding>

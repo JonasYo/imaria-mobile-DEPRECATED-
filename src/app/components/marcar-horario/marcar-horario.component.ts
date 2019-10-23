@@ -3,6 +3,9 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { ServicosService } from '../../services/servicos/servicos.service';
 import { ToastService } from '../../services/toast/toast.service';
 import { Storage } from '@ionic/storage';
+import { LoadingService } from '../../services/loading/loading.service';
+import { ModalsComponent } from '../modals/modals.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-marcar-horario',
@@ -10,8 +13,10 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./marcar-horario.component.scss'],
 })
 export class MarcarHorarioComponent implements OnInit {
+  notHave = '../../../assets/icon/icon-sad.png';
+
   dias = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
-  datas: any = [];
+  datasDisponiveis: any = [];
 
   horariosDisponiveis: any = [];
 
@@ -20,10 +25,21 @@ export class MarcarHorarioComponent implements OnInit {
   servicoEscolhido: any = {};
 
   // tslint:disable-next-line:max-line-length
-  constructor(private navParams: NavParams, private modalCtrl: ModalController, private servicesServ: ServicosService, private toastServ: ToastService, private storage: Storage) {
+  constructor(private router: Router, private navParams: NavParams, private modalCtrl: ModalController, private servicesServ: ServicosService, private toastServ: ToastService, private storage: Storage, private loadingServ: LoadingService) {
     this.listaDatas();
     this.servicoEscolhido = this.navParams.get('servico');
-    this.listaHorariosDisponiveis(this.datas[0].date);
+    this.listaHorariosDisponiveis(this.datasDisponiveis[0].date);
+  }
+
+  changeColor(index) {
+    for (let i = 0; i < this.datasDisponiveis.length; i++) {
+      if (i === index) {
+        this.datasDisponiveis[i].active = true;
+        this.listaHorariosDisponiveis(this.datasDisponiveis[i].date);
+      } else {
+        this.datasDisponiveis[i].active = false;
+      }
+    }
   }
 
   async listaDatas() {
@@ -32,7 +48,6 @@ export class MarcarHorarioComponent implements OnInit {
     endDate.setMonth(endDate.getMonth() + 2);
     for (let index = 0; index < 65; index++) {
       if (currentDate < endDate) {
-
         const diaDaSemana = currentDate.getDay();
         const dia = currentDate.getDate();
         const mes = currentDate.getMonth();
@@ -44,36 +59,60 @@ export class MarcarHorarioComponent implements OnInit {
           date: `${ano}-${mes <= 9 ? '0' + mes : mes}-${dia <= 9 ? '0' + dia : dia}`,
         };
 
-        this.datas.push(res);
+        this.datasDisponiveis.push(res);
         currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
       } else {
         break;
       }
     }
-    this.datas[0].active = true;
-  }
-
-  changeColor(index) {
-    for (let i = 0; i < this.datas.length; i++) {
-      if (i === index) {
-        this.datas[i].active = true;
-        this.listaHorariosDisponiveis(this.datas[i].date);
-      } else {
-        this.datas[i].active = false;
-      }
-    }
+    this.datasDisponiveis[0].active = true;
   }
 
   async listaHorariosDisponiveis(date) {
+    this.loadingServ.showLoader(3000);
     try {
       this.agendamentoHorario.date = date;
       this.horariosDisponiveis = await this.servicesServ.listaHorariosDisponiveis(date, this.servicoEscolhido.id).toPromise();
+      this.loadingServ.hideLoader();
     } catch (error) {
       this.toastServ.toastDinamicoErro(error.error.message);
     }
   }
 
+  async confirmarAgendamento(dto) {
+    try {
+      const modal = await this.modalCtrl.create({
+        component: ModalsComponent,
+        componentProps: {
+          tipoModal: 'agendarProcedimento',
+        }
+      });
+      await modal.present();
+      const { data } = await modal.onDidDismiss();
+      if (data === 'confirmar') {
+        this.agendarHorario(dto);
+      }
+    } catch (error) {
+      alert(JSON.stringify(error));
+    }
+  }
+
   async agendarHorario(dto) {
+    await this.formataDados(dto);
+
+    const { id } = await this.storage.get('user');
+    try {
+      const res = await this.servicesServ.agendarHorario(id, this.agendamentoHorario).toPromise();
+      if (res) {
+        this.toastServ.toastDinamicoSucesso('Agendamento realizado com sucesso');
+        this.closeModal();
+      }
+    } catch (error) {
+      this.toastServ.toastDinamicoErro(error.error.message);
+    }
+  }
+
+  async formataDados(dto) {
     this.agendamentoHorario.hour_id = dto.id;
     this.agendamentoHorario.service_id = this.servicoEscolhido.id;
 
@@ -84,15 +123,7 @@ export class MarcarHorarioComponent implements OnInit {
     date.setHours(separarHorario[0]);
     date.setMinutes(separarHorario[1]);
 
-    this.agendamentoHorario.date = date.toISOString();
-
-    const { id } = await this.storage.get('user');
-    try {
-      const res = await this.servicesServ.agendarHorario(id, this.agendamentoHorario).toPromise();
-      console.log(res);
-    } catch (error) {
-      this.toastServ.toastDinamicoErro(error.error.message);
-    }
+    return this.agendamentoHorario.date = date.toISOString();
   }
 
   closeModal() {

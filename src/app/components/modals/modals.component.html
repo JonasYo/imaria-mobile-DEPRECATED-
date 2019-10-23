@@ -1,0 +1,31 @@
+<div class="opacidadeModal">
+  <div class="centralizar">
+    <ion-card *ngIf="tipoModal=='agendarProcedimento'" class="card-custom-bg bdra-5 ani-bottom-to-top">
+      <ion-card-header text-center class="fs-20 fw-600">
+        Confirmar Agendamento
+      </ion-card-header>
+      <ion-list class="mgt--25">
+          <p text-left class="fs-17 pdl-20">
+            Serviço: <br>
+            Preço: <br>
+            Duração: <br>
+            Profissional: Maria Ruth
+          </p>
+      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-button (click)="returnModal('close')" class="fs-17" type="submit" expand="block" color="danger">
+              Fechar
+            </ion-button>
+          </ion-col>
+          <ion-col col-6>
+            <ion-button (click)="returnModal('confirmar')" class="fs-17" type="submit" expand="block" color="success">
+              Salvar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+</div>

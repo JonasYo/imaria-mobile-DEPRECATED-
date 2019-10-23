@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MarcarHorarioComponent } from './marcar-horario/marcar-horario.component';
+import { ModalsComponent } from './modals/modals.component';
 
 const PAGES_COMPONENTS = [
   MarcarHorarioComponent,
+  ModalsComponent,
 ];
 
 @NgModule({

@@ -1,7 +1,10 @@
+$transparent: transparent;
+
 .bg {
   --background: #f4f4f4;
   --ion-background-color: #f4f4f4;
 }
+
 
 .header-md::after,
 .header-ios::after {
@@ -12,24 +15,36 @@
   align-items: center;
 }
 
-.login-form {
-  width: 85%;
-  padding-top: 30px;
+.form {
+  width: 90%;
   margin: auto;
 }
 
-// .text-primary {
-//   color: var(--ion-color-primary) !important;
-// }
-// .text-secondary {
-//   color: var(--ion-color-secondary) !important;
-// }
-// .text-danger {
-//   color: var(--ion-color-danger) !important;
-// }
-// .text-muted {
-//   color: #999;
-// }
+.custom-loader-class {
+  text-align: center;
+}
+
+.ani-bottom-to-top {
+  animation-name: bottom-to-top;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+ion-footer {
+    &.footer-md::before {
+        background-image: none !important;
+        background: none !important;
+    }
+}
+
+ion-modal{
+  --background: transparent !important;
+}
+
+.transparent {
+  background: transparent !important;
+}
 
 .mgt-1 {
   margin-top: 1px !important;
@@ -70,6 +85,47 @@
 }
 .mgt-55 {
   margin-top: 55px !important;
+}
+
+.mgt--1 {
+  margin-top: -1px !important;
+}
+
+.mgt--2 {
+  margin-top: -2px !important;
+}
+.mgt--3 {
+  margin-top: -3px !important;
+}
+.mgt--4 {
+  margin-top: -4px !important;
+}
+.mgt--5 {
+  margin-top: -5px !important;
+}
+.mgt--10 {
+  margin-top: -10px !important;
+}
+.mgt--15 {
+  margin-top: -15px !important;
+}
+.mgt--20 {
+  margin-top: -20px !important;
+}
+.mgt--25 {
+  margin-top: -15px !important;
+}
+.mgt--30 {
+  margin-top: -30px !important;
+}
+.mgt--35 {
+  margin-top: -35px !important;
+}
+.mgt--45 {
+  margin-top: -45px !important;
+}
+.mgt--55 {
+  margin-top: -55px !important;
 }
 
 .mgb-1 {
@@ -198,6 +254,36 @@
 }
 .pdt-5 {
   padding-top: 5px !important;
+}
+.pdt-10 {
+  padding-top: 10px !important;
+}
+.pdt-15 {
+  padding-top: 15px !important;
+}
+.pdt-20 {
+  padding-top: 20px !important;
+}
+.pdt-25 {
+  padding-top: 25px !important;
+}
+.pdt-30 {
+  padding-top: 30px !important;
+}
+.pdt-35 {
+  padding-top: 35px !important;
+}
+.pdt-40 {
+  padding-top: 40px !important;
+}
+.pdt-45 {
+  padding-top: 45px !important;
+}
+.pdt-50 {
+  padding-top: 55px !important;
+}
+.pdt-55 {
+  padding-top: 55px !important;
 }
 
 .pdb-1 {

@@ -11,7 +11,10 @@ export class ToastService {
   async toastDinamicoSucesso(msg) {
     const toast = await this.toastCtrl.create({
       message: msg,
-      duration: 2000
+      duration: 2000,
+      showCloseButton: true,
+      closeButtonText: 'Fechar',
+      color: 'success',
     });
     toast.present();
   }
@@ -19,7 +22,21 @@ export class ToastService {
   async toastDinamicoErro(msg) {
     const toast = await this.toastCtrl.create({
       message: msg,
-      duration: 2000
+      duration: 2000,
+      showCloseButton: true,
+      closeButtonText: 'Fechar',
+      color: 'danger',
+    });
+    toast.present();
+  }
+
+  async toastDinamicoAviso(msg) {
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+      showCloseButton: true,
+      closeButtonText: 'Fechar',
+      color: 'warning',
     });
     toast.present();
   }

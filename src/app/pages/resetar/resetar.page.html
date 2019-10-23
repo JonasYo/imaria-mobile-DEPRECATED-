@@ -6,34 +6,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg">
-  <div class="mgt-55">
-    <div>
-      <h2 text-center class="text-title">
-        Alterar Senha
+<ion-content class="bg" fullscreen>
+  <div class="mgt-25">
+    <div text-center>
+      <h2 class="text-title">
+        Recuperar <br> Senha
       </h2>
     </div>
-    <div class="login-form">
+    <div text-center>
+      <p>Nós precisamos do seu email registrado para enviar as instruções para resetar sua senha.</p>
+    </div>
+    <div class="form">
       <form>
-        <ion-grid>
-          <ion-row color="primary" justify-content-center>
-            <ion-col align-self-center>
-              <div>
-                <ion-item>
-                  <ion-label class="fs-15 mgb-10" position="floating">Email</ion-label>
-                  <ion-input name="email" type="email" required>
-                    <ion-icon name="md-person" class="pdr-5" item-right></ion-icon>
-                  </ion-input>
-                </ion-item>
-              </div>
-              <div padding>
-                <ion-button routerLink="/tabs" routerDirection="forward" class="fs-17" type="submit" expand="block"
-                  fill="outline">
-                Avançar</ion-button>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <div align-self-center justify-content-center>
+          <ion-item>
+            <ion-label class="fs-15 mgb-10" position="floating">Email</ion-label>
+            <ion-input name="email" type="email" required>
+              <ion-icon name="md-at" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+        </div>
+        <div class="pdt-25">
+          <ion-button class="fs-17" type="submit" expand="block" fill="outline">
+            Avançar</ion-button>
+        </div>
       </form>
     </div>
   </div>
