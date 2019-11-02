@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="ani-left-to-right" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg ani-left-to-right" fullscreen>
+  <div>
+    <div text-center>
+      <h2 class="text-title">
+        Recuperar <br> Senha
+      </h2>
+    </div>
+    <div text-center>
+      <p>Nós precisamos do seu email registrado para enviar as instruções para resetar sua senha.</p>
+    </div>
+    <div class="form">
+      <form [formGroup]="recuperarSenhaForm" (submit)="resetarSenha()">
+        <div align-self-center justify-content-center>
+          <ion-item>
+            <ion-label class="fs-15 mgb-10" position="floating">Email</ion-label>
+            <ion-input name="email" formControlName="email" [(ngModel)]="usuario.email" type="email" required>
+              <ion-icon name="md-at" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.email">
+              <div class="pdl-20"
+                *ngIf="recuperarSenhaForm.get('email').hasError(validation.type) && (recuperarSenhaForm.get('email').dirty || recuperarSenhaForm.get('email').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="pdt-25" [hidden]="!btnAvancarRecuperacao">
+          <ion-button class="fs-17" type="submit" expand="block" (click)="submitted=true" fill="outline">
+            Avançar</ion-button>
+        </div>
+        <div class="pdt-25 spinner" [hidden]="btnAvancarRecuperacao">
+          <ion-spinner text-center color="primary" name="crescent"></ion-spinner>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

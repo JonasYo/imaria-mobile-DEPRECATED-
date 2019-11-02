@@ -1,0 +1,64 @@
+[
+    {
+        "name": [
+            {
+                "type": "required",
+                "message": "Nome é obrigadorio."
+            },
+            {
+                "type": "pattern",
+                "message": "Nome inválido."
+            }
+        ],
+        "dateBirth": [
+            {
+                "type": "required",
+                "message": "Data de nascimento é obrigatório."
+            },
+            {
+                "type": "pattern",
+                "message": "Data de nascimento inválida."
+            }
+        ],
+        "phone": [
+            {
+                "type": "required",
+                "message": "Telefone é obrigatório."
+            },
+            {
+                "type": "minlength",
+                "message": "Telefone inválido."
+            }
+        ],
+        "email": [
+            {
+                "type": "required",
+                "message": "Email é obrigatório."
+            },
+            {
+                "type": "pattern",
+                "message": "Email inválido."
+            }
+        ],
+        "password": [
+            {
+                "type": "required",
+                "message": "Senha é obrigatório."
+            },
+            {
+                "type": "minlength",
+                "message": "A senha deve ter mais que 4 caracteres."
+            }
+        ],
+        "confirmPassword": [
+            {
+                "type": "required",
+                "message": "Confirmar a senha é obrigatório."
+            },
+            {
+                "type": "minlength",
+                "message": "A senha deve ter mais que 4 caracteres."
+            }
+        ]
+    }
+]

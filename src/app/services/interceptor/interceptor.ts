@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import {
     HttpInterceptor,
     HttpRequest,
-    HttpResponse,
     HttpHandler,
     HttpEvent,
-    HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError, from } from 'rxjs';
-import { map, catchError, switchMap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { AlertController, Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ToastService } from '../toast/toast.service';

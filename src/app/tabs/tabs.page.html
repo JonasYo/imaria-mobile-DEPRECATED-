@@ -1,23 +1,40 @@
 <div class="tabs">
   <ion-tabs>
-    <ion-tab-bar slot="bottom">
+    <ion-tab-bar *ngIf="roleUser === 1" slot="bottom">
       <ion-tab-button tab="servicos">
-        <ion-icon name="md-calendar"></ion-icon>
+        <ion-icon name="ios-home"></ion-icon>
         <ion-label>Agendar</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="agenda">
-        <ion-icon name="ios-list-box"></ion-icon>
+        <ion-icon name="ios-bookmarks"></ion-icon>
         <ion-label>Minha Agenda</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="feed">
-        <ion-icon name="md-paper"></ion-icon>
+        <ion-icon name="md-images"></ion-icon>
         <ion-label>Feed</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="opcoes">
-        <ion-icon name="ios-more"></ion-icon>
+        <ion-icon name="ios-options"></ion-icon>
+        <ion-label>Opções</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+
+    <ion-tab-bar *ngIf="roleUser === 2" slot="bottom">
+      <ion-tab-button tab="agendamentos">
+        <ion-icon name="ios-home"></ion-icon>
+        <ion-label>Agendamentos</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="agenda">
+        <ion-icon name="ios-bookmarks"></ion-icon>
+        <ion-label>Realizar postagem</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="opcoes">
+        <ion-icon name="ios-options"></ion-icon>
         <ion-label>Opções</ion-label>
       </ion-tab-button>
     </ion-tab-bar>

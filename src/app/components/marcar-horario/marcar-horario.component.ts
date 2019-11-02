@@ -12,22 +12,18 @@ import { Router } from '@angular/router';
   templateUrl: './marcar-horario.component.html',
   styleUrls: ['./marcar-horario.component.scss'],
 })
-export class MarcarHorarioComponent implements OnInit {
-  notHave = '../../../assets/icon/icon-sad.png';
-
+export class MarcarHorarioComponent{
+  notHave = '../../../assets/icon/alert.png';
   dias = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
   datasDisponiveis: any = [];
-
   horariosDisponiveis: any = [];
-
   agendamentoHorario: any = {};
-
   servicoEscolhido: any = {};
 
   // tslint:disable-next-line:max-line-length
-  constructor(private router: Router, private navParams: NavParams, private modalCtrl: ModalController, private servicesServ: ServicosService, private toastServ: ToastService, private storage: Storage, private loadingServ: LoadingService) {
-    this.listaDatas();
+  constructor(private navParams: NavParams, private modalCtrl: ModalController, private servicesServ: ServicosService, private toastServ: ToastService, private storage: Storage, private loadingServ: LoadingService) {
     this.servicoEscolhido = this.navParams.get('servico');
+    this.listaDatas();
     this.listaHorariosDisponiveis(this.datasDisponiveis[0].date);
   }
 
@@ -71,10 +67,11 @@ export class MarcarHorarioComponent implements OnInit {
   async listaHorariosDisponiveis(date) {
     this.loadingServ.showLoader(3000);
     try {
-      this.agendamentoHorario.date = date;
+      this.agendamentoHorario.date_start = date;
       this.horariosDisponiveis = await this.servicesServ.listaHorariosDisponiveis(date, this.servicoEscolhido.id).toPromise();
       this.loadingServ.hideLoader();
     } catch (error) {
+      this.loadingServ.hideLoader();      
       this.toastServ.toastDinamicoErro(error.error.message);
     }
   }
@@ -85,8 +82,10 @@ export class MarcarHorarioComponent implements OnInit {
         component: ModalsComponent,
         componentProps: {
           tipoModal: 'agendarProcedimento',
+          servicoEscolhido: this.servicoEscolhido
         }
       });
+
       await modal.present();
       const { data } = await modal.onDidDismiss();
       if (data === 'confirmar') {
@@ -98,9 +97,12 @@ export class MarcarHorarioComponent implements OnInit {
   }
 
   async agendarHorario(dto) {
-    await this.formataDados(dto);
+    await this.formataHorario(dto);
 
+    this.agendamentoHorario.hour_id = dto.id;
+    this.agendamentoHorario.service_id = this.servicoEscolhido.id;
     const { id } = await this.storage.get('user');
+
     try {
       const res = await this.servicesServ.agendarHorario(id, this.agendamentoHorario).toPromise();
       if (res) {
@@ -112,23 +114,22 @@ export class MarcarHorarioComponent implements OnInit {
     }
   }
 
-  async formataDados(dto) {
-    this.agendamentoHorario.hour_id = dto.id;
-    this.agendamentoHorario.service_id = this.servicoEscolhido.id;
-
+  async formataHorario(dto) {
     const separarHorario = dto.hour.split(':');
-    const date = new Date(this.agendamentoHorario.date);
+    const date = new Date(this.agendamentoHorario.date_start);
 
     date.setDate(date.getDate() + 1);
     date.setHours(separarHorario[0]);
     date.setMinutes(separarHorario[1]);
 
-    return this.agendamentoHorario.date = date.toISOString();
+    this.agendamentoHorario.date_start = date.toISOString();
+    date.setMinutes(date.getMinutes() + this.servicoEscolhido.duration);
+    this.agendamentoHorario.date_end = date.toISOString();
+
+    return this.agendamentoHorario;
   }
 
   closeModal() {
     this.modalCtrl.dismiss();
   }
-
-  ngOnInit() { }
 }

@@ -1,0 +1,74 @@
+<ion-content class="bg">
+  <ion-segment class="pdl-35 pdr-35 pdt-20 ani-left-to-right" mode="ios" type="ios" [(ngModel)]="selectedTab">
+    <ion-segment-button mode="ios" type="ios" value="aRealizar">
+      Agendados
+    </ion-segment-button>
+    <ion-segment-button mode="ios" type="ios" value="jaRealizados">
+      Realizados
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="pdt-20 ">
+    <div *ngIf="selectedTab == 'aRealizar'">
+      <div class="ani-left-to-right">
+        <ul class="timeline">
+          <li *ngFor="let agenda of agendaUsuario.scheduled">
+            <div *ngIf="agenda.active == 1">
+              <div class="timeline-thumb bg-color-rose timeline-icon">
+                <ion-icon name="md-star"></ion-icon>
+              </div>
+              <div class="timeline-item">
+                <h4>{{agenda.services.name}}</h4>
+                <p>{{agenda.services.description}}</p>
+                <div class="timeline-stats">
+                  <ion-icon name="ios-person"></ion-icon> Maria Ruth
+                  <span class="pos-absolute-right">
+                    <ion-icon name="calendar"></ion-icon>
+                    {{agenda.date_start | date: 'dd/MM/yyyy'}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="ani-left-to-right"
+        *ngIf="!agendaUsuario.scheduled || agendaUsuario.scheduled == undefined || agendaUsuario.scheduled.length == 0">
+        <ion-img style="height: 300px;" [src]="noData"></ion-img>
+        <h5 text-center><b>Não foi encontrado</b></h5>
+        <h5 text-center><b>nenhum registro.</b></h5>
+      </div>
+    </div>
+
+    <div *ngIf="selectedTab == 'jaRealizados'">
+      <div class="ani-left-to-right">
+        <ul class="timeline">
+          <li *ngFor="let agenda of agendaUsuario.finished">
+            <div *ngIf="agenda.active == 1">
+              <div class="timeline-thumb bg-color-yellow timeline-icon">
+                <ion-icon name="md-star"></ion-icon>
+              </div>
+              <div class="timeline-item">
+                <h4>{{agenda.services.name}}</h4>
+                <p>{{agenda.services.description}}</p>
+                <div class="timeline-stats">
+                  <ion-icon name="ios-person"></ion-icon> Maria Ruth
+                  <span class="pos-absolute-right">
+                    <ion-icon name="calendar"></ion-icon>
+                    {{agenda.date_start | date: 'dd/MM/yyyy'}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="ani-left-to-right"
+        *ngIf="!agendaUsuario.finished || agendaUsuario.finished == undefined || agendaUsuario.finished.length == 0">
+        <ion-img style="height: 300px;" [src]="noData"></ion-img>
+        <h5 text-center><b>Não foi encontrado</b></h5>
+        <h5 text-center><b>nenhum registro.</b></h5>
+      </div>
+    </div>
+  </div>
+</ion-content>

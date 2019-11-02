@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  urlIMariaAuth = 'http://localhost:8000';
+  urlIMariaAuth = ENV.apiUrl;
 
   constructor(public http: HttpClient) { }
 
   cadastrarUsuario(obj): Observable<any> {
-    return this.http.post(this.urlIMariaAuth + '/users', obj);
+    return this.http.post(`${this.urlIMariaAuth}/users`, obj);
   }
 
   alterarDadosUsuario(flag, obj): Observable<any> {

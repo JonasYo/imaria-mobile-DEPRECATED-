@@ -8,18 +8,24 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AccessService {
-
-  // urlDespensaNaMaoApp: string = ENV.urlDespensaNaMaoApp;
-  urlIMariaAuth = 'http://localhost:8000';
+  urlIMariaAuth = ENV.apiUrl;
 
   constructor(public http: HttpClient) { }
 
   loginUsuario(obj): Observable<any> {
-    return this.http.post(this.urlIMariaAuth + '/auth/singin', obj);
+    return this.http.post(`${this.urlIMariaAuth}/auth/singin`, obj);
   }
 
-  // loginAlternativo(obj) {
-  //   return this.http.post(this.urlDespensaNaMaoAuth + '/acesso/alternativo', obj);
-  // }
+  loginAlternativo(obj) {
+    return this.http.post(`${this.urlIMariaAuth}/auth/singin/alternative`, obj);
+  }
+
+  forgotPassword(obj): Observable<any> {
+    return this.http.post(`${this.urlIMariaAuth}/auth/forgot`, obj);
+  }
+
+  resetPassword(obj): Observable<any> {
+    return this.http.post(`${this.urlIMariaAuth}/auth/reset`, obj);
+  }
 }
 

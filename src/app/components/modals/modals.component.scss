@@ -3,11 +3,15 @@ ion-card {
 }
 
 .centralizar {
-  position: absolute;
   width: 90%;
-  height: 65%;
-  top: 30%;
-  left: 5%;
+  height: 50%;
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .opacidadeModal {

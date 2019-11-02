@@ -19,5 +19,10 @@ ion-icon {
 
 .tabs ion-tab-button {
   background: #fe8083;
-  color: white;
+  --color: white;
+  --color-selected: #96ECFF;
+}
+
+ion-label {
+  color: white !important;
 }

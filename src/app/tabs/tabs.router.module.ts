@@ -13,7 +13,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/login/login.module').then(m => m.LoginPageModule)
+              import('../pages/global/login/login.module').then(m => m.LoginPageModule)
           }
         ]
       },
@@ -23,7 +23,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/cadastro/cadastro.module').then(m => m.CadastroPageModule)
+              import('../pages/user/cadastro/cadastro.module').then(m => m.CadastroPageModule)
           }
         ]
       },
@@ -33,7 +33,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/resetar/resetar.module').then(m => m.ResetarPageModule)
+              import('../pages/user/resetar/resetar.module').then(m => m.ResetarPageModule)
           }
         ]
       },
@@ -43,7 +43,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/servicos/servicos.module').then(m => m.ServicosPageModule)
+              import('../pages/user/servicos/servicos.module').then(m => m.ServicosPageModule)
           }
         ]
       },
@@ -53,7 +53,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/feed/feed.module').then(m => m.FeedPageModule)
+              import('../pages/user/feed/feed.module').then(m => m.FeedPageModule)
           }
         ]
       },
@@ -63,7 +63,17 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/opcoes/opcoes.module').then(m => m.OpcoesPageModule)
+              import('../pages/global/opcoes/opcoes.module').then(m => m.OpcoesPageModule)
+          }
+        ]
+      },
+      {
+        path: 'agendamentos',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/manager/agendamentos/agendamentos.module').then(m => m.AgendamentosPageModule)
           }
         ]
       },
@@ -73,7 +83,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/enviar-publicacao/enviar-publicacao.module').then(m => m.EnviarPublicacaoPageModule)
+              import('../pages/manager/enviar-publicacao/enviar-publicacao.module').then(m => m.EnviarPublicacaoPageModule)
           }
         ]
       }, {
@@ -82,17 +92,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/ajuda/ajuda.module').then(m => m.AjudaPageModule)
-          }
-        ]
-      },
-      {
-        path: 'sobre',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../pages/sobre-nos/sobre-nos.module').then(m => m.SobreNosPageModule)
+              import('../pages/global/ajuda/ajuda.module').then(m => m.AjudaPageModule)
           }
         ]
       },
@@ -102,20 +102,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../pages/agenda/agenda.module').then(m => m.AgendaPageModule)
+              import('../pages/user/agenda/agenda.module').then(m => m.AgendaPageModule)
           }
         ]
       },
-      {
-        path: 'conta',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../pages/conta/conta.module').then(m => m.ContaPageModule)
-          }
-        ]
-      }
     ]
   },
   {

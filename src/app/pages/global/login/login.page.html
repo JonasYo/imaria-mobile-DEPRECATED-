@@ -1,0 +1,84 @@
+<ion-content class="bg">
+  <div class="pdt-50 ani-left-to-right">
+    <div>
+      <h2 text-center class="text-title">
+        Entrar
+      </h2>
+    </div>
+
+    <div class="form pdt-10">
+      <form [formGroup]="loginForm" (submit)="loginUsuario()">
+        <div align-self-center justify-content-center>
+          <ion-item>
+            <ion-label class="fs-15 mgb-10" position="floating">Email</ion-label>
+            <ion-input name="email" formControlName="email" [(ngModel)]="usuario.email" type="email"
+              (ionBlur)="keyboardIsOpen=false" (ionFocus)="keyboardIsOpen=true" required>
+              <ion-icon name="md-at" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.email">
+              <div class="pdl-20"
+                *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+          <ion-item class="mgt-5">
+            <ion-label class="fs-15 mgb-10" position="floating">Senha</ion-label>
+            <ion-input name="password" formControlName="password" [(ngModel)]="usuario.password" type="password"
+              (ionBlur)="keyboardIsOpen=false" (ionFocus)="keyboardIsOpen=true" required>
+              <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.password">
+              <div class="pdl-20"
+                *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div>
+          <ion-text routerLink="/resetar" text-right>
+            <p>Esqueceu a senha?</p>
+          </ion-text>
+        </div>
+        <div [hidden]="!btnLogin">
+          <ion-button class="fs-17" type="submit" expand="block" (click)="submitted=true" fill="outline">
+            Entrar
+          </ion-button>
+        </div>
+        <div class="spinner" [hidden]="btnLogin">
+          <ion-spinner text-center color="primary" name="crescent"></ion-spinner>
+        </div>
+      </form>
+    </div>
+
+    <div class="form pdt-25" text-center>
+      <ion-text>
+        <hr class="hr" data-content="OU">
+      </ion-text>
+      <ion-item lines="none" color="none" class="form mgt--20">
+        <ion-img (click)="loginWithFacebook()" class="icon-social-media" [src]="facebookIcon"></ion-img>
+        <ion-img (click)="loginWithGoogle()" class="icon-social-media" [src]="googleIcon"></ion-img>
+        <ion-img (click)="loginWithTwitter()" class="icon-social-media" [src]="twitterIcon"></ion-img>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer [hidden]="keyboardIsOpen" class="bg ani-left-to-right">
+  <ion-toolbar transparent>
+    <ion-text routerLink="/cadastro" routerDirection="forward" text-bold text-center>
+      <p>INSCREVA-SE</p>
+    </ion-text>
+  </ion-toolbar>
+</ion-footer>

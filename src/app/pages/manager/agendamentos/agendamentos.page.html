@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>
+      Agendamentos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ani-left-to-right">
+  <div class="scrolling-wrapper">
+    <div *ngFor="let data of datasDisponiveis; let i = index;" class="card">
+      <ion-card>
+        <ion-card-header [ngClass]="{'changeColor': data.active}" (click)="changeColor(i)">
+          <ion-card-title text-center class="fs-17">
+            {{ data.diaDaSemana }} <br>
+            {{ data.data}}
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </div>
+  <div *ngIf="agendamentos.length > 0" class="ani-left-to-right">
+    <ion-list inset class=" mgb-5" *ngFor="let servico of agendamentos">
+      <ion-item text-wrap (click)="mostrarInformacoes(servico)">
+        <ion-thumbnail slot="start">
+          <ion-img src="../../assets/images/sobrancelha.jpg"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{servico.services.name}}</h2>
+          <p>{{servico.user.name}}</p>
+          <ion-icon name="time"></ion-icon> {{servico.hour.hour}}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="agendamentos.length == 0" class="pdt-20 ani-left-to-right">
+    <ion-img style="height: 100px;" [src]="notHave"></ion-img>
+    <h5 text-center><b>Ainda não há agendamentos</b></h5>
+    <h5 text-center><b>para a data escolhida</b></h5>
+  </div>
+</ion-content>

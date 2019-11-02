@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment as ENV } from '../../../environments/environment';
 
-import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicosService {
-  urlIMariaAuth = 'http://localhost:8000';
+  urlIMariaAuth = ENV.apiUrl;
 
   constructor(public http: HttpClient) { }
 

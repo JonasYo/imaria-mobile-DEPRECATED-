@@ -1,0 +1,141 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="ani-left-to-right" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg ani-left-to-right" fullscreen>
+  <div>
+    <div text-center>
+      <h2 class="text-title">
+        Cadastrar-se
+      </h2>
+      <p>Crie uma nova conta.</p>
+    </div>
+    <div class="form">
+      <form [formGroup]="cadastroForm" (submit)="cadastro()">
+        <div align-self-center justify-content-center>
+          <ion-item>
+            <!-- <ion-label class="fs-15 mgb-10" position="floating">Nome Completo</ion-label> -->
+            <ion-input placeholder="Nome Completo" formControlName="name" name="nome" [(ngModel)]="usuario.name"
+              type="text" required>
+              <ion-icon name="md-person" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.name">
+              <div class="pdl-20"
+                *ngIf="cadastroForm.get('name').hasError(validation.type) && (cadastroForm.get('name').dirty || cadastroForm.get('name').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+          <ion-item>
+            <ion-input placeholder="Telefone" formControlName="phone" name="phone" [(ngModel)]="usuario.phone"
+              [brmasker]="{phone: true}" type="tel" required>
+              <ion-icon name="md-phone-portrait" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.phone">
+              <div class="pdl-20"
+                *ngIf="cadastroForm.get('phone').hasError(validation.type) && (cadastroForm.get('phone').dirty || cadastroForm.get('phone').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+          <ion-item>
+            <ion-input placeholder="Data de nascimento" formControlName="dateBirth" name="dateBirth"
+              [(ngModel)]="usuario.date_birth" [brmasker]="{mask:'00/00/0000', len:10}" type="number" required>
+              <ion-icon name="md-calendar" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.dateBirth">
+              <div class="pdl-20"
+                *ngIf="cadastroForm.get('dateBirth').hasError(validation.type) && (cadastroForm.get('dateBirth').dirty || cadastroForm.get('dateBirth').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+          <ion-item>
+            <ion-input placeholder="Email" formControlName="email" name="email" [(ngModel)]="usuario.email" type="email"
+              required>
+              <ion-icon name="md-at" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.email">
+              <div class="pdl-20"
+                *ngIf="cadastroForm.get('email').hasError(validation.type) && (cadastroForm.get('email').dirty || cadastroForm.get('email').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+          <ion-item class="mgt-5">
+            <ion-input placeholder="Senha" formControlName="password" name="password" [(ngModel)]="usuario.password"
+              type="password" required>
+              <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.password">
+              <div class="pdl-20"
+                *ngIf="cadastroForm.get('password').hasError(validation.type) && (cadastroForm.get('password').dirty || cadastroForm.get('password').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+          <ion-item class="mgt-5">
+            <ion-input placeholder="Confirmar senha" formControlName="confirmPassword" name="confirmPassword"
+              [(ngModel)]="usuario.confirmPassword" type="password" required>
+              <ion-icon name="ios-lock" class="pdr-5" item-right></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessage.confirmPassword">
+              <div class="pdl-20"
+                *ngIf="cadastroForm.get('confirmPassword').hasError(validation.type) && (cadastroForm.get('confirmPassword').dirty || cadastroForm.get('confirmPassword').touched || submitted)">
+                <p class="text-danger text-left fs-10 mgb-0">
+                  <ion-icon name="ios-information-circle-outline" item-right></ion-icon>
+                  {{validation.message}}
+                </p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="pdt-25" [hidden]="!btnCadastro">
+          <ion-button class="fs-17" type="submit" expand="block" (click)="submitted=true" fill="outline">Cadastrar</ion-button>
+        </div>
+        <div class="spinner pdt-25" [hidden]="btnCadastro">
+          <ion-spinner text-center color="primary" name="crescent"></ion-spinner>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
+<!-- 
+<ion-footer class="bg">
+  <ion-toolbar transparent>
+    <ion-text routerLink="/login" routerDirection="forward" text-bold text-center>
+      <p>Já possui login? Entrar</p>
+    </ion-text>
+  </ion-toolbar>
+</ion-footer> -->

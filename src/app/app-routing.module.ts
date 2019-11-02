@@ -8,14 +8,13 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'cadastro', loadChildren: './pages/cadastro/cadastro.module#CadastroPageModule' },
-  { path: 'resetar', loadChildren: './pages/resetar/resetar.module#ResetarPageModule' },
-  { path: 'enviar-publicacao', loadChildren: './pages/enviar-publicacao/enviar-publicacao.module#EnviarPublicacaoPageModule' },
-  { path: 'ajuda', loadChildren: './pages/ajuda/ajuda.module#AjudaPageModule' },
-  { path: 'sobre', loadChildren: './pages/sobre-nos/sobre-nos.module#SobreNosPageModule' },
-  { path: 'agenda', loadChildren: './pages/agenda/agenda.module#AgendaPageModule' },
-  { path: 'conta', loadChildren: './pages/conta/conta.module#ContaPageModule' },
+  { path: 'login', loadChildren: './pages/global/login/login.module#LoginPageModule' },
+  { path: 'cadastro', loadChildren: './pages/user/cadastro/cadastro.module#CadastroPageModule' },
+  { path: 'resetar', loadChildren: './pages/user/resetar/resetar.module#ResetarPageModule' },
+  { path: 'enviar-publicacao', loadChildren: './pages/manager/enviar-publicacao/enviar-publicacao.module#EnviarPublicacaoPageModule' },
+  { path: 'ajuda', loadChildren: './pages/global/ajuda/ajuda.module#AjudaPageModule' },
+  { path: 'agenda', loadChildren: './pages/user/agenda/agenda.module#AgendaPageModule' },
+  { path: 'agendamentos', loadChildren: './pages/manager/agendamentos/agendamentos.module#AgendamentosPageModule' },
 ];
 @NgModule({
   imports: [

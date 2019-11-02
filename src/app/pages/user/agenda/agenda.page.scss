@@ -1,0 +1,101 @@
+.divider-title {
+  background: #e4e4e4;
+  padding: 5px 15px;
+}
+
+.timeline-thumb ion-icon {
+  zoom: 1.5;
+  margin-top: 0.3em;
+}
+
+.timeline-stats ion-icon {
+  vertical-align: bottom;
+  font-size: 1.3em;
+}
+/*Timeline*/
+
+.pos-absolute-right {
+  position: absolute;
+  right: 8px;
+}
+
+.timeline {
+  position: relative;
+  margin: 15px 0 0 0;
+}
+
+.timeline:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: #afdcf8;
+  left: 44px;
+  margin-left: -10px;
+  z-index: 1;
+}
+
+.timeline .timeline-thumb {
+  border-radius: 500px;
+  width: 50px;
+  z-index: 2;
+  position: absolute;
+  left: 10px;
+}
+
+.timeline .timeline-thumb.timeline-icon {
+  height: 50px;
+  text-align: center;
+  color: white;
+  border: 5px solid transparent;
+}
+
+.timeline .timeline-thumb.timeline-icon i {
+  font-size: 28px;
+  margin: 6px 0;
+  display: block;
+}
+
+.timeline .timeline-item {
+  padding-left: 30px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+/*Optional*/
+.bar-stable {
+  background-color: #d9d9d9 !important;
+}
+.tabs {
+  background-color: #d9d9d9 !important;
+}
+.icon-size-lg {
+  font-size: 40px;
+}
+
+
+/* === Color Themes === */
+.color-yellow {
+  color: #ffcc00 !important;
+}
+
+.bg-color-yellow {
+  background-color: #ffcc00 !important;
+}
+
+.color-orange {
+  color: #ff9500 !important;
+}
+
+.bg-color-orange {
+  background-color: #ff9500 !important;
+}
+
+.color-rose {
+  color: #fe8083 !important;
+}
+
+.bg-color-rose {
+  background-color: #fe8083 !important;
+}
