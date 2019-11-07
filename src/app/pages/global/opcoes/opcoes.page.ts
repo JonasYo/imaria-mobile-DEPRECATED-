@@ -68,6 +68,7 @@ export class OpcoesPage {
 
   async getInformacoesUsuario() {
     this.user = await this.storage.get('user');
+    this.user.avatar = await this.storage.get('avatar');
     this.userInfomation = JSON.parse(JSON.stringify(this.user));
   }
 

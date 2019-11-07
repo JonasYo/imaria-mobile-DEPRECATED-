@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { AccessService } from '../../../services/access/access.service';
-import { Router } from '@angular/router';
-import { ToastService } from '../../../services/toast/toast.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
+
+import { AccessService } from '../../../services/access/access.service';
+import { ToastService } from '../../../services/toast/toast.service';
 import { LoadingService } from '../../../services/loading/loading.service';
 
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-login',
@@ -46,12 +50,12 @@ export class LoginPage {
     ]
   }
 
-  usuario: any = { id: '', name: '', email: '', picture: { data: { url: '' } } };
+  usuario: any = { name: '', email: '', picture: { data: { url: '' } } };
   btnLogin = true;
 
   public loginForm: any;
 
-  constructor(private accessServ: AccessService, private toastServ: ToastService, private router: Router, private storage: Storage, private formBuilder: FormBuilder, private loadingServ: LoadingService, private fb: Facebook) {
+  constructor(private accessServ: AccessService, private toastServ: ToastService, private router: Router, private storage: Storage, private formBuilder: FormBuilder, private loadingServ: LoadingService, private facebook: Facebook, private googlePlus: GooglePlus, private afAuth: AngularFireAuth) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.pattern(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]{3})$/), , Validators.required])],
       password: ['', Validators.compose([Validators.required])],
@@ -80,43 +84,70 @@ export class LoginPage {
     }
   }
 
-  async loginWithFacebook() {
+  async getUserLoggedFacebook() {
     try {
-      let response = await this.fb.login(['public_profile', 'email']);
+      let response = await this.facebook.login(['public_profile', 'email']);
       if (response.status === 'connected') {
-        this.usuario = await this.fb.api('/' + response.authResponse.userID + '/?fields=id,email,name,picture', ['public_profile']);
+        this.usuario = await this.facebook.api('/' + response.authResponse.userID + '/?fields=email,name,picture', ['public_profile']);
         this.usuario.alias = 'FACEBOOK';
         this.usuario.role_id = 1;
 
-        const res = await this.accessServ.loginAlternativo(this.usuario).toPromise();
-
-        if (res) {
-          this.toastServ.toastDinamicoSucesso('Sucesso ao logar com o Facebook');
-          let { user, token }: any = res;
-          await this.storage.set('token', token);
-          await this.storage.set('avatar', this.usuario.data.url);
-          await this.storage.set('user', user);
-
-          user.userRoles.map(role => {
-            if (role.is_actived === 1 && role.role_id === 2) {
-              this.router.navigateByUrl('tabs/agendamentos');
-            } else if (role.is_actived === 1 && role.role_id === 1) {
-              this.router.navigateByUrl('tabs/servicos');
-            }
-          })
-        }
+        delete this.usuario.id;
+        await this.storage.set('avatar', this.usuario.picture.data.url);
+        await this.loginAlternative();
+        
       } else {
         this.toastServ.toastDinamicoErro('Ocorreu um erro ao tentar logar com o Facebook');
       }
     } catch (e) {
-      alert(JSON.stringify(e))
       this.toastServ.toastDinamicoErro('Ocorreu um erro ao tentar logar.');
     };
   }
 
-  async loginWithGoogle() {
-    alert('logou');
+  async getUserLoggedGoogle() {
+    try {
+      let gplusUser = await this.googlePlus.login({
+        'webClientId': '766636459443-g1jplo64mp5c5n7b2k1dar4nfl48dl3d.apps.googleusercontent.com',
+        'offline': true,
+        'scopes': 'profile email'
+      });
+
+      const { user } = await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken));
+      this.usuario.name = user.displayName;
+      this.usuario.email = user.email;
+      this.usuario.alias = 'GOOGLE';
+      this.usuario.role_id = 1;
+      await this.storage.set('avatar', user.photoURL);
+
+      await this.loginAlternative();
+    } catch (error) {
+      this.toastServ.toastDinamicoErro('Ocorreu um erro ao tentar logar.');
+    }
   }
+
+  async loginAlternative() {
+    try {
+      const res = await this.accessServ.loginAlternativo(this.usuario).toPromise();
+      if (res) {
+        let { user, token }: any = res;
+
+        await this.storage.set('token', token);
+        await this.storage.set('user', user);
+
+        user.userRoles.map(role => {
+          if (role.is_actived === 1 && role.role_id === 2) {
+            this.router.navigateByUrl('tabs/agendamentos');
+          } else if (role.is_actived === 1 && role.role_id === 1) {
+            this.router.navigateByUrl('tabs/servicos');
+          }
+        })
+      }
+    } catch (error) {
+      alert(JSON.stringify(error));
+      this.toastServ.toastDinamicoErro('Ocorreu um erro ao tentar logar');
+    }
+  }
+
 
   async loginWithTwitter() {
     alert('logou');

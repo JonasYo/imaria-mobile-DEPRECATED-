@@ -40,13 +40,10 @@ export class InterceptorProvider implements HttpInterceptor {
 
                     return next.handle(request).pipe(
                         catchError(error => {
+                            alert(JSON.stringify(error))
                             if (error.status === 401) {
-                                this.storage.get('token').then(res => {
-                                    if (res) {
-                                        this.events.publish('deslogar');
-                                        this.toastServ.toastDinamicoErro('Token inválido, sessão encerrada');
-                                    }
-                                });
+                                this.toastServ.toastDinamicoErro('Token inválido, sessão encerrada');
+                                this.events.publish('logout');
                             } else if (error.status > 500) {
                                 this.toastServ.toastDinamicoAviso('Ocorreu um erro durante a comunicação com o servidor');
                             }
