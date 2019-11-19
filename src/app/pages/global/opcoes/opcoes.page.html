@@ -2,8 +2,7 @@
   <div text-center class="ani-left-to-right">
     <img *ngIf="!user.avatar" class="avartar"
       src="https://cdn1.iconfinder.com/data/icons/instagram-ui-flat/48/Instagram_UI-18-512.png">
-    <img *ngIf="user.avatar" class="avartar"
-      [src]="user.avatar">
+    <img *ngIf="user.avatar" class="avartar" [src]="user.avatar">
     <p class="fs-20 mgt--3 fw-600">{{user.name}}</p>
     <!-- <p class="fs-15 fw-500">{{user.email}}</p> -->
     <p class="fs-15 mgt--3 fw-500">Cliente desde: {{user.createdAt | date: 'MM/yyyy'}}</p>
@@ -169,7 +168,7 @@
 
   <div [hidden]="selectedTab != 'sobre'">
     <div class="mgt-40 ani-left-to-right">
-      <ion-col (click)="loginWithFacebook()">
+      <ion-col>
         <ion-img class="icon-social-media" style="height: 100px;" src="../../assets/images/imaria-vertical.png">
         </ion-img>
       </ion-col>

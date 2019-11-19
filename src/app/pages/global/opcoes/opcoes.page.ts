@@ -12,6 +12,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['opcoes.page.scss']
 })
 export class OpcoesPage {
+  submitted: boolean;
   selectedTab = 'perfil';
 
   validationMessage = {

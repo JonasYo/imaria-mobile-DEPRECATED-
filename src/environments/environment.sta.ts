@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://sta:8000'
+  apiUrl: 'http://asedqawewdxs12-com.umbler.net'
 };

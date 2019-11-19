@@ -12,6 +12,7 @@ import { Storage } from '@ionic/storage';
 })
 
 export class CadastroPage {
+  submitted: boolean;
   validationMessage = {
     name: [
       { type: 'required', message: 'Nome é obrigadorio.' },

@@ -25,7 +25,6 @@ import { Facebook } from '@ionic-native/facebook/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { Push } from '@ionic-native/push/ngx';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3_Qy7h6N-VTde_eItr8bs-P3-IARWn7M",
@@ -51,7 +50,6 @@ const firebaseConfig = {
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     Facebook,
     GooglePlus,
-    Push
   ],
   bootstrap: [AppComponent]
 })

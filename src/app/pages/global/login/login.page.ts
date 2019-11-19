@@ -18,6 +18,9 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
+  submitted: boolean;
+  keyboardIsOpen: boolean;
+
   facebookIcon = '../../../assets/icon/facebook.png';
   instagramIcon = '../../../assets/icon/instagram.png';
   googleIcon = '../../../assets/icon/google.png';
@@ -64,6 +67,7 @@ export class LoginPage {
 
   async  loginUsuario() {
     this.btnLogin = false;
+    this.loadingServ.showLoader(30000);
     try {
       const res = await this.accessServ.loginUsuario(this.usuario).toPromise();
       if (res) {
@@ -78,7 +82,9 @@ export class LoginPage {
           }
         })
       }
+      this.loadingServ.hideLoader();
     } catch (error) {
+      this.loadingServ.hideLoader();
       this.btnLogin = true;
       this.toastServ.toastDinamicoErro('Ocorreu um erro, verifique seu Usuario/Senha.');
     }
@@ -86,6 +92,7 @@ export class LoginPage {
 
   async getUserLoggedFacebook() {
     try {
+      this.loadingServ.showLoader(30000);
       let response = await this.facebook.login(['public_profile', 'email']);
       if (response.status === 'connected') {
         this.usuario = await this.facebook.api('/' + response.authResponse.userID + '/?fields=email,name,picture', ['public_profile']);
@@ -95,17 +102,18 @@ export class LoginPage {
         delete this.usuario.id;
         await this.storage.set('avatar', this.usuario.picture.data.url);
         await this.loginAlternative();
-        
       } else {
         this.toastServ.toastDinamicoErro('Ocorreu um erro ao tentar logar com o Facebook');
       }
     } catch (e) {
+      this.loadingServ.hideLoader();
       this.toastServ.toastDinamicoErro('Ocorreu um erro ao tentar logar.');
     };
   }
 
   async getUserLoggedGoogle() {
     try {
+      this.loadingServ.showLoader(30000);
       let gplusUser = await this.googlePlus.login({
         'webClientId': '766636459443-g1jplo64mp5c5n7b2k1dar4nfl48dl3d.apps.googleusercontent.com',
         'offline': true,
@@ -118,9 +126,9 @@ export class LoginPage {
       this.usuario.alias = 'GOOGLE';
       this.usuario.role_id = 1;
       await this.storage.set('avatar', user.photoURL);
-
       await this.loginAlternative();
     } catch (error) {
+      this.loadingServ.hideLoader();
       this.toastServ.toastDinamicoErro('Ocorreu um erro ao tentar logar.');
     }
   }
@@ -141,9 +149,10 @@ export class LoginPage {
             this.router.navigateByUrl('tabs/servicos');
           }
         })
+        this.loadingServ.hideLoader();
       }
     } catch (error) {
-      alert(JSON.stringify(error));
+      this.loadingServ.hideLoader();
       this.toastServ.toastDinamicoErro('Ocorreu um erro ao tentar logar');
     }
   }

@@ -11,6 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./resetar.page.scss'],
 })
 export class ResetarPage {
+  submitted: boolean;
   validationMessage = {
     name: [
       { type: 'required', message: 'Nome é obrigadorio.' },
